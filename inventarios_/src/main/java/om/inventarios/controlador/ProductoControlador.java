@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("inventarios-app") // Ruta base para todos los endpoints de inventario http://localhost:8080/inventario-app
-@CrossOrigin(origins = "https://localhost:4200") // Permite conexiones desde Angular en el puerto 4200
+
 public class ProductoControlador {
 
     private final IProductoServicio productoServicio;

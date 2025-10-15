@@ -1,30 +1,56 @@
-<div class="container text-center">
-  <h3>Sistema de Inventario</h3>
-</div>
-<div class="container text-center">
-  <table class="table table-striped table-hover alingn-middle" >
-    <thead class="table-dark">
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Descripcion Producto</th>
-        <th scope="col">Precio</th>
-        <th scope="col">Existencia</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>fat</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<div class="container my-5">
+  <!-- Header con botón agregar -->
+  <div class="inventory-header">
+    <h1 class="inventory-title">Sistema de Inventario</h1>
+    <a routerLink="/agregar" class="btn-add-product">
+      <span class="plus-icon">+</span>
+      Agregar Producto
+    </a>
+  </div>
 
+  <!-- Tabla mejorada -->
+  <div class="custom-table-wrapper">
+    <table class="custom-inventory-table">
+      <thead>
+        <tr>
+          <th class="text-center">ID</th>
+          <th>Descripción del Producto</th>
+          <th class="text-end">Precio</th>
+          <th class="text-center">Existencia</th>
+          <th class="text-center">Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(producto of productos; track producto.idProducto){
+          <tr>
+            <td class="text-center id-column">{{producto.idProducto}}</td>
+            <td class="desc-column">{{producto.descripcion}}</td>
+            <td class="text-end price-column">${{producto.precio}}</td>
+            <td class="text-center">
+              <span class="stock-badge">{{producto.existencia}} unidades</span>
+            </td>
+            <td class="text-center actions-column">
+              <button 
+                (click)="editarProducto(producto.idProducto)" 
+                class="btn-action btn-edit">
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10z"/>
+                </svg>
+                Editar
+              </button>
+              <button 
+                (click)="eliminarProducto(producto.idProducto)" 
+                class="btn-action btn-delete">
+                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1z"/>
+                </svg>
+                Eliminar
+              </button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

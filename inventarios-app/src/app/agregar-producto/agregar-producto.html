@@ -1,0 +1,245 @@
+<div class="page-wrapper">
+  <div class="form-header">
+    <h1>Agregar Nuevo Producto</h1>
+    <div class="header-line"></div>
+  </div>
+  
+  <form class="wide-form" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+      <div class="form-field full-width">
+        <label for="descripcion">Descripción del Producto</label>
+        <input 
+          type="text" 
+          id="descripcion"  name="descripcion" [(ngModel)]="producto.descripcion"
+          placeholder="Ingrese la descripción completa del producto"
+          required
+        >
+      </div>
+    </div>
+
+    <div class="form-row two-columns">
+      <div class="form-field">
+        <label for="precio">Precio</label>
+        <div class="price-input">
+          <span class="currency">$</span>
+          <input 
+            type="number" 
+            step="0.01" 
+            id="precio" name="precio" requiered [(ngModel)]="producto.precio"
+            placeholder="0.00"
+            min="0"
+            required
+          >
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label for="existencia">Existencia</label>
+        <input 
+          type="number" 
+          id="existencia"  name="existencia" [(ngModel)]="producto.existencia"
+          placeholder="Cantidad en inventario"
+          min="0"
+          required
+        >
+      </div>
+    </div>
+
+    <div class="button-group">
+      <button type="submit" class="btn-save">Guardar Producto</button>
+      <a href="/" class="btn-cancel">Cancelar</a>
+    </div>
+  </form>
+</div>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #0f172a;
+    padding: 0;
+    min-height: 100vh;
+    color: #e2e8f0;
+  }
+
+  .page-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 40px;
+  }
+
+  .form-header {
+    margin-bottom: 50px;
+  }
+
+  .form-header h1 {
+    font-size: 42px;
+    color: #f1f5f9;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+
+  .header-line {
+    width: 100px;
+    height: 5px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    border-radius: 3px;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+  }
+
+  .wide-form {
+    background: #1e293b;
+    padding: 50px;
+    border-radius: 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    border: 1px solid #334155;
+  }
+
+  .form-row {
+    margin-bottom: 35px;
+  }
+
+  .form-row.two-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-field.full-width {
+    width: 100%;
+  }
+
+  .form-field label {
+    font-size: 15px;
+    font-weight: 600;
+    color: #94a3b8;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .form-field input {
+    padding: 18px 20px;
+    font-size: 18px;
+    border: 2px solid #334155;
+    border-radius: 0;
+    transition: all 0.2s;
+    font-family: inherit;
+    background: #0f172a;
+    color: #f1f5f9;
+  }
+
+  .form-field input::placeholder {
+    color: #64748b;
+  }
+
+  .form-field input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    background: #1e293b;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+
+  .price-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .price-input .currency {
+    position: absolute;
+    left: 20px;
+    font-size: 20px;
+    color: #94a3b8;
+    font-weight: 600;
+    z-index: 1;
+  }
+
+  .price-input input {
+    padding-left: 50px;
+    width: 100%;
+  }
+
+  .button-group {
+    display: flex;
+    gap: 20px;
+    margin-top: 50px;
+    padding-top: 40px;
+    border-top: 2px solid #334155;
+  }
+
+  .btn-save, .btn-cancel {
+    padding: 18px 50px;
+    font-size: 17px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .btn-save {
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    color: white;
+    flex: 1;
+  }
+
+  .btn-save:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+  }
+
+  .btn-cancel {
+    background: transparent;
+    color: #94a3b8;
+    border: 2px solid #475569;
+    flex: 0 0 200px;
+  }
+
+  .btn-cancel:hover {
+    background: #334155;
+    color: #e2e8f0;
+    border-color: #64748b;
+  }
+
+  @media (max-width: 768px) {
+    .page-wrapper {
+      padding: 30px 20px;
+    }
+
+    .form-header h1 {
+      font-size: 32px;
+    }
+
+    .wide-form {
+      padding: 30px 20px;
+    }
+
+    .form-row.two-columns {
+      grid-template-columns: 1fr;
+      gap: 25px;
+    }
+
+    .button-group {
+      flex-direction: column;
+    }
+
+    .btn-cancel {
+      flex: 1;
+    }
+  }
+</style>
